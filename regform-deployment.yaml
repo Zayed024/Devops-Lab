@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: regform-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: regform
+  template:
+    metadata:
+      labels:
+        app: regform
+    spec:
+      containers:
+      - name: regform
+        image: reg-form:latest
+        imagePullPolicy: Never  
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: regform-service
+spec:
+  type: NodePort
+  selector:
+    app: regform
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
