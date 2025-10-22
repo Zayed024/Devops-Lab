@@ -2,11 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/Zayed024/Devops-Lab.git'
-            }
-        }
+        
 
         stage('Build Docker Image') {
             steps {
